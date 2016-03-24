@@ -126,13 +126,6 @@ Start both the pinger and printer in go-routines that will communicate over the 
 
 .code basic-channel-example.go
 
-* Resources
-
-- gobyexample.com
-- tour.golang.com
-- play.golang.com
-- golang-book.com
-
 * Exercise - compound interest
 
 - Using a simple web server, create a rest API to answer a request with the compound interest for a given period.
@@ -148,3 +141,23 @@ Ex:
 
 .play compound-interest-solution.go
 
+* Advanced Go Session
+
+* Why concurrency?
+An example using the fibanacci sequence
+
+.play fib-sequential.go
+
+* Why concurrency! (cont)
+An example using the fibanacci sequence in concurrent development
+
+.play fib-concurrent.go
+
+* Lab time
+
+* Resources
+
+- gobyexample.com
+- tour.golang.com
+- play.golang.com
+- golang-book.com
