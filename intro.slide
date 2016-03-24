@@ -1,0 +1,150 @@
+Intro to GOLANG
+
+28 March 2016
+
+Lonnie Webb
+Master Software Engineer, CapitalOne
+lonnie.webb@capitalone.com
+github: lwdallas
+
+* What is GOLANG?
+
+- actually capable of concurrent processing
+
+* Why GOLANG?
+
+- Cross platform
+- Actually cross-platform
+- Get as close to the metal as you want
+- Simple language design that performs nicely
+and exposes flaws 
+
+* A Giant Overbearing Ecosystem
+
+- I lied.
+
+* Hello World
+
+- this is not PowerPoint
+.play helloworld.go
+
+* Go program structure
+
+The _package_:
+
+ package main 
+similar to a n/s, one *main* required
+
+The _import_(s):
+
+ import ( 
+ 	"fmt"
+ 	)  
+
+seperate lines, in quotes
+
+The _main()_ function:
+
+ func main(){
+ 	// code lines
+ 	}  
+
+There can be many functions, one must be *main()*
+
+* Code in your browser
+
+- play
+
+* A web server
+with a simple route handler
+.play basic-web-server.go
+
+* Slices are not arrays
+
+from the golang-book.com
+
+An *array* is a numbered sequence of elements of a single type with a fixed length. In Go they look like this:
+
+ var x [5]int // there are five of these, forever. 
+
+A *slice* is a _segment_ of an array. Like arrays slices are indexable and have a length. Unlike arrays this length is allowed to change:
+
+ var x []float64 // but this doesn't exist until you _make()_ it 
+
+A *map* is an unordered collection of key-value pairs. Here's an example of a map in Go:
+
+ var x map[string]int // useful when you would use a hash table 
+
+* Go routines
+
+Most simply stated go routines run concurrently.
+
+ go print_hello_world() 
+
+ go print_the_date() 
+
+- the routines are now running ansychronously
+- they both will run until process stopped
+- what do you do to control them?
+
+(Hint: control implies communication)
+
+* Channels
+provide a way for two goroutines to communicate with one another and synchronize(not that one)their execution. 
+
+Send a ping
+
+ func pinger(c chan string) {
+ 	for i := 0; ; i++ { // like a do-while
+ 		c <- "ping"
+ 	}
+ }
+
+Recieve the ping
+
+ func printer(c chan string) {
+  for {
+    msg := <- c
+    fmt.Println(msg)
+    time.Sleep(time.Second * 1)
+  }
+ }
+
+* cont
+
+Start both the pinger and printer in go-routines that will communicate over the channel.
+
+ func main() {
+  var c chan string = make(chan string)
+  go pinger(c)
+  go printer(c)
+  var input string
+  fmt.Scanln(&input)
+ }
+
+* cont
+
+.code basic-channel-example.go
+
+* Resources
+
+- gobyexample.com
+- tour.golang.com
+- play.golang.com
+- golang-book.com
+
+* Exercise - compound interest
+
+- Using a simple web server, create a rest API to answer a request with the compound interest for a given period.
+Ex:
+- 127.0.0.1:8080/p=15000&r=0.03&t=5&n=12
+- Result: 17424.25
+
+* Exercise cont.
+
+.code compound-interest-harness.go
+
+* Solution
+
+.play compound-interest-solution.go
+
