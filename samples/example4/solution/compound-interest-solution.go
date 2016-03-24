@@ -14,6 +14,9 @@ func compute_compound_interest(principal float64, rate float64, t_years float64,
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	values, _ := url.ParseQuery(r.URL.Path[1:])
+	if len(values) < 4 {
+		return
+	}
 	p, _ := strconv.ParseFloat(values["p"][0], 64)
 	rate, _ := strconv.ParseFloat(values["r"][0], 64)
 	t, _ := strconv.ParseFloat(values["t"][0], 64)
