@@ -1,3 +1,14 @@
-#Sample Code
+# go-intro-3-28-2016
+Intro to GOLANG talk
 
-These files accompany the dev day installation and correspond to the presentation.
+## Installation instructions
+
+```
+$ go get golang.org/x/tools/cmd/present
+
+$ git clone https://github.com/lwdallas/go-intro-3-28-2016.git
+
+$ cd <talk-dir>
+
+$ present .
+```

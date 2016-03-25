@@ -13,31 +13,20 @@ github: lwdallas
 
 * Why GOLANG?
 
-- Tiny standalone executables
 - Cross platform
 - Actually cross-platform
 - Get as close to the metal as you want
-- Simple language design that performs nicely and exposes flaws 
+- Simple language design that performs nicely
+and exposes flaws 
 
 * A Giant Overbearing Ecosystem
 
 - I lied.
 
-- 25 Keywords:
-
-  break        default      func         interface    select
-  case         defer        go           map          struct
-  chan         else         goto         package      switch
-  const        fallthrough  if           range        type
-  continue     for          import       return       var
-
-- Tiny toolchain (Sublime, go, git)
-
 * Hello World
 
 - this is not PowerPoint
 .play helloworld.go
-.caption samples/example1
 
 * Go program structure
 
@@ -46,7 +35,7 @@ The _package_:
  package main 
 similar to a n/s, one *main* required
 
-The import(s):
+The _import_(s):
 
  import ( 
  	"fmt"
@@ -62,51 +51,14 @@ The _main()_ function:
 
 There can be many functions, one must be *main()*
 
-* Variables
-
-- Go is strongly typed
-- Declare
-
-  var a int
-
-- Assign and declare at once with Wirth(Pascal)-style operator
-
-  b := 0
-
-- Change the value with equals
-
-  b = 1
-
 * Code in your browser
 
 - play
 
-* A Web Server
+* A web server
 with a simple route handler
 .play basic-web-server.go
-.caption example2/basic-web-server.go
 
-* Running a Program
-
- go run main.go
-
-* Debug a program the old-school way
-
-  main(){
-    a := "a"
-    b := 0
-    b = a
-
-    fmt.Println( "What is the value?", a, b )
-  }
-
-* Use the InteliJ IDE
-- Because Sublime isn't always enough
-- Golang plugin allows debugging, inspecting, watch
-
-* Compiling to a Binary
-
- go build -o main
 
 * Now in Docker
 
@@ -196,81 +148,35 @@ Start both the pinger and printer in go-routines that will communicate over the 
  }
 
 * cont
-.caption example3/basic-channel-example.go
+
 .code basic-channel-example.go
-
-* Why concurrency?
-An example using the fibanacci sequence
-.caption example5/fib-sequential.go
-.play fib-sequential.go
-
-* Why concurrency! (cont)
-An example using the fibanacci sequence in concurrent development
-.caption example5/fib-concurrent.go
-.play fib-concurrent.go
-
-* Now that the code is introduced, try something and Dockerize it
 
 * Exercise - compound interest
 
-- Using a simple web server, create a routine to answer a request with the compound interest for a given period.
+- Using a simple web server, create a rest API to answer a request with the compound interest for a given period.
 Ex:
 - 127.0.0.1:9090/p=15000&r=0.03&t=5&n=12
 - Result: 17424.25
 
-Build on the skeleten of example4/exercise/compound-interest-harness.go
-
 * Exercise cont.
 
 .code compound-interest-harness.go
-.caption example4/exercise/compound-interest-harness.go
 
 * Solution
 
 .play compound-interest-solution.go
-.caption example4/solution/compound-interest-solution.go
 
-* Build and run the Docker image
+* Advanced Go Session
 
-The build command:
+* Why concurrency?
+An example using the fibanacci sequence
 
- $docker build -t go_basic . 
+.play fib-sequential.go
 
-Run:
+* Why concurrency! (cont)
+An example using the fibanacci sequence in concurrent development
 
- $docker run --publish 9090:9090 --name test --rm go_basic 
-
-Test:
-
- http://127.0.0.1:9090/Snacks 
-
-Remove all images (cleanup if you make a mistake):
-
- $docker rm `docker ps --no-trunc -aq` 
-
-* Bonus Round
-
-* Run a container elsewhere
-- get an account on hub.docker.com
-- create makefile
-
-  .PHONY: build
-
-  build:
-       docker build -t username/devday:latest .
-       docker push username/devday:latest
-
-- make 
-
-  $make
-
-- go to another system, pull from the hub
-
-  $docker pull username/devday
-
-- then run 
-
-  $docker run username/devday:latest --publish 9090:9090 --rm go_basic
+.play fib-concurrent.go
 
 * Lab time--Don't forget the door prize
 
