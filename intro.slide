@@ -7,6 +7,13 @@ Master Software Engineer, CapitalOne
 lonnie.webb@capitalone.com
 github: lwdallas
 
+* GOLANG Meetup
+
+5 April 2016
+6:30pm to 8:00pm
+Guest speaker John Scott
+Plano Conference Center Atrium
+
 * What is GOLANG?
 
 - actually capable of concurrent processing
@@ -58,6 +65,31 @@ There can be many functions, one must be *main()*
 * A web server
 with a simple route handler
 .play basic-web-server.go
+
+
+* Now in Docker
+
+Build the simplest golang Docker file
+
+.code DockerFile
+
+* Build and run the Docker image
+
+The build command:
+
+ $docker build -t go_basic . 
+
+Run:
+
+ $docker run --publish 9090:9090 --name test --rm go_basic 
+
+Test:
+
+ http://127.0.0.1:9090/Snacks 
+
+Remove all images (cleanup if you make a mistake):
+
+ $docker rm `docker ps --no-trunc -aq` 
 
 * Slices are not arrays
 
@@ -130,7 +162,7 @@ Start both the pinger and printer in go-routines that will communicate over the 
 
 - Using a simple web server, create a rest API to answer a request with the compound interest for a given period.
 Ex:
-- 127.0.0.1:8080/p=15000&r=0.03&t=5&n=12
+- 127.0.0.1:9090/p=15000&r=0.03&t=5&n=12
 - Result: 17424.25
 
 * Exercise cont.
@@ -161,3 +193,10 @@ An example using the fibanacci sequence in concurrent development
 - tour.golang.com
 - play.golang.com
 - golang-book.com
+
+* GOLANG Meetup
+
+5 April 2016
+6:30pm to 8:00pm
+Guest speaker John Scott
+Plano Conference Center Atrium
